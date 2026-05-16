@@ -1,0 +1,196 @@
+/* Dashboard Main Container */
+.dashboard-container {
+  padding: 2rem;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 60px);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  color: #1e293b;
+}
+
+/* Premium MNC Hero Banner */
+.dashboard-hero {
+  background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -10px rgba(76, 29, 149, 0.4);
+  margin-bottom: 2.5rem;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-content p {
+  font-size: 1.05rem;
+  color: #c4b5fd;
+  max-width: 500px;
+}
+
+.hero-illustration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  pointer-events: none;
+}
+
+.abstract-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.5;
+}
+
+.abstract-circle.c1 {
+  width: 300px;
+  height: 300px;
+  background: #8b5cf6;
+  top: -50px;
+  right: -50px;
+}
+
+.abstract-circle.c2 {
+  width: 200px;
+  height: 200px;
+  background: #ec4899;
+  bottom: -50px;
+  right: 150px;
+}
+
+/* Sections */
+.dashboard-section {
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1.2rem;
+  padding-left: 0.5rem;
+}
+
+/* Stats Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.border-blue::before { background: #3b82f6; }
+.border-purple::before { background: #8b5cf6; }
+.border-green::before { background: #10b981; }
+.border-yellow::before { background: #f59e0b; }
+.border-gray::before { background: #64748b; }
+.border-red::before { background: #ef4444; }
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.stat-header p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #475569;
+  margin: 0;
+}
+
+.icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.bg-blue { background: #eff6ff; color: #3b82f6; }
+.bg-purple { background: #f5f3ff; color: #8b5cf6; }
+.bg-green { background: #ecfdf5; color: #10b981; }
+.bg-yellow { background: #fffbeb; color: #f59e0b; }
+.bg-gray { background: #f8fafc; color: #64748b; }
+.bg-red { background: #fef2f2; color: #ef4444; }
+
+.stat-card h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.stat-footer {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.trend.positive { color: #10b981; font-weight: 600; }
+.trend.negative { color: #ef4444; font-weight: 600; }
+
+/* Skeleton Loaders */
+.skeleton-card {
+  height: 160px;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 16px;
+  border: none;
+}
+.skeleton-card::before { display: none; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.clickable-card {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .dashboard-hero { padding: 2rem 1.5rem; }
+  .hero-content h1 { font-size: 1.8rem; }
+  .abstract-circle { display: none; }
+}

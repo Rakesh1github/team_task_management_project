@@ -1,0 +1,11 @@
+<body>
+<script>
+fetch("https://team-task-manager-production-d9e2.up.railway.app/auth/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ name: "test", email: "test29@test.com", password: "test" })
+})
+.then(r => r.text().then(t => document.body.innerText = "Status: " + r.status + " Body: " + t))
+.catch(e => document.body.innerText = "Error: " + e.message);
+</script>
+</body>
