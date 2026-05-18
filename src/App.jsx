@@ -5,7 +5,8 @@ import React from "react";
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  Navigate
 } from "react-router-dom";
 
 import AuthPage from "./pages/AuthPage";
@@ -85,7 +86,7 @@ const App = () => {
   path="/manage-members"
   element={
     <Layout>
-      <ManageMembers />
+      {role === "ADMIN" ? <ManageMembers /> : <Navigate to="/dashboard" replace />}
     </Layout>
   }
 />
@@ -93,7 +94,7 @@ const App = () => {
   path="/team"
   element={
     <Layout>
-      <TeamDashboard />
+      {role === "ADMIN" ? <TeamDashboard /> : <Navigate to="/dashboard" replace />}
     </Layout>
   }
 />

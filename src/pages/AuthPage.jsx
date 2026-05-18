@@ -10,6 +10,7 @@ const AuthPage = ({ initialView = "login" }) => {
   // Login State
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [loginRole, setLoginRole] = useState("MEMBER");
 
   // Signup State
   const [signupName, setSignupName] = useState("");
@@ -40,6 +41,12 @@ const AuthPage = ({ initialView = "login" }) => {
 
       if (!response.ok || !data || !data.token) {
         setErrorMsg(data?.message || "Invalid Email or Password");
+        setLoading(false);
+        return;
+      }
+
+      if (data.role !== loginRole) {
+        setErrorMsg(`Role mismatch: Account is registered as ${data.role}`);
         setLoading(false);
         return;
       }
@@ -111,6 +118,23 @@ const AuthPage = ({ initialView = "login" }) => {
             <h1 className="auth-title">Team Task Manager</h1>
             <p className="auth-subtitle">Welcome back! Please enter your details.</p>
 
+            <div className="role-toggle">
+              <button
+                type="button"
+                className={`role-btn ${loginRole === "MEMBER" ? "active" : ""}`}
+                onClick={() => setLoginRole("MEMBER")}
+              >
+                Member Login
+              </button>
+              <button
+                type="button"
+                className={`role-btn ${loginRole === "ADMIN" ? "active" : ""}`}
+                onClick={() => setLoginRole("ADMIN")}
+              >
+                Admin Login
+              </button>
+            </div>
+
             <form onSubmit={handleLogin}>
               <div className="input-group">
                 <label>Email</label>
@@ -160,11 +184,23 @@ const AuthPage = ({ initialView = "login" }) => {
                 <input type="password" placeholder="••••••••" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)} required />
               </div>
               <div className="input-group">
-                <label>Role</label>
-                <select value={signupRole} onChange={(e) => setSignupRole(e.target.value)}>
-                  <option value="MEMBER">Member</option>
-                  <option value="ADMIN">Admin</option>
-                </select>
+                <label>Register As</label>
+                <div className="role-toggle" style={{ marginBottom: "5px" }}>
+                  <button
+                    type="button"
+                    className={`role-btn ${signupRole === "MEMBER" ? "active" : ""}`}
+                    onClick={() => setSignupRole("MEMBER")}
+                  >
+                    Member
+                  </button>
+                  <button
+                    type="button"
+                    className={`role-btn ${signupRole === "ADMIN" ? "active" : ""}`}
+                    onClick={() => setSignupRole("ADMIN")}
+                  >
+                    Admin
+                  </button>
+                </div>
               </div>
 
               {errorMsg && !isLogin && <p className="auth-error">{errorMsg}</p>}

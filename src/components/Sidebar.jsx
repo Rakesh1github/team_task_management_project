@@ -132,50 +132,30 @@ const Sidebar = () => {
             📁 Projects
           </Link>
 
-          <div className="menu-category">Team Management</div>
-
-          <Link
-            to="/team"
-            className={
-              location.pathname ===
-              "/team"
-
-              ?
-
-              "active"
-
-              :
-
-              ""
-            }
-            onClick={() =>
-              setOpen(false)
-            }
-          >
-            🏢 Team Dashboard
-          </Link>
-
           {role === "ADMIN" && (
-
             <>
+              <div className="menu-category">Team Management</div>
+
+              <Link
+                to="/team"
+                className={
+                  location.pathname === "/team"
+                  ? "active"
+                  : ""
+                }
+                onClick={() => setOpen(false)}
+              >
+                🏢 Team Dashboard
+              </Link>
 
               <Link
                 to="/tasks"
                 className={
-                  location.pathname ===
-                  "/tasks"
-
-                  ?
-
-                  "active"
-
-                  :
-
-                  ""
+                  location.pathname === "/tasks"
+                  ? "active"
+                  : ""
                 }
-                onClick={() =>
-                  setOpen(false)
-                }
+                onClick={() => setOpen(false)}
               >
                 ✅ Tasks
               </Link>
@@ -183,26 +163,15 @@ const Sidebar = () => {
               <Link
                 to="/manage-members"
                 className={
-                  location.pathname ===
-                  "/manage-members"
-
-                  ?
-
-                  "active"
-
-                  :
-
-                  ""
+                  location.pathname === "/manage-members"
+                  ? "active"
+                  : ""
                 }
-                onClick={() =>
-                  setOpen(false)
-                }
+                onClick={() => setOpen(false)}
               >
                 👥 Project Members
               </Link>
-
             </>
-
           )}
 
           {role === "MEMBER" && (

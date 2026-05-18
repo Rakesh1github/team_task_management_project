@@ -9,7 +9,7 @@ Built with a premium SaaS-style interface, the platform provides a unified dashb
 ### Tech Stack
 - **Frontend:** React JS, Vanilla CSS (Custom Design System), React Router DOM
 - **Backend:** Spring Boot, Spring Security, RESTful APIs
-- **Database:** MySQL
+- **Database:** Self-Contained In-Memory H2 (Zero external setup required!)
 - **Security:** Stateless JWT Authentication & Role-Based Access Control (RBAC)
 
 ---
@@ -37,16 +37,11 @@ Built with a premium SaaS-style interface, the platform provides a unified dashb
 
 ## Application Setup
 
-### 1. Database Configuration
-Ensure MySQL is running locally on port `3306`.
-Update the database credentials in `src/main/resources/application.properties`:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/team_task_manager
-spring.datasource.username=root
-spring.datasource.password=your_password
-spring.jpa.hibernate.ddl-auto=update
-```
+### 1. Zero Database Connection Setup
+The application is pre-configured with a **self-contained in-memory H2 database**. 
+- You do **not** need to install, run, or connect to an external PostgreSQL or MySQL database server.
+- The schema is created automatically on application startup.
+- You can access the H2 Web Console for visual database inspection at `http://localhost:8080/h2-console` using JDBC URL: `jdbc:h2:mem:team_task_manager` (Username: `sa`, no password).
 
 ### 2. Running the Backend (Spring Boot)
 Open your terminal in the root directory and run:
