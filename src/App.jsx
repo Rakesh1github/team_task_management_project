@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 
 import AuthPage from "./pages/AuthPage";
-
 import Dashboard from "./pages/Dashboard";
 
 import AdminProjects from "./pages/AdminProjects";
@@ -28,7 +27,7 @@ const App = () => {
 
   return (
 
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter>
 
       <Routes>
 
@@ -37,6 +36,7 @@ const App = () => {
           path="/"
           element={<AuthPage initialView="login" />}
         />
+
         <Route
           path="/signup"
           element={<AuthPage initialView="signup" />}
@@ -53,55 +53,65 @@ const App = () => {
         />
 
         {/* Projects */}
-
         <Route
           path="/projects"
           element={
             <Layout>
-
               {
                 role === "ADMIN"
                   ? <AdminProjects />
                   : <MemberProjects />
               }
-
             </Layout>
           }
         />
+
+        {/* Tasks */}
         <Route
-  path="/tasks"
-  element={
-    <Layout>
+          path="/tasks"
+          element={
+            <Layout>
+              {
+                localStorage.getItem("role") === "ADMIN"
+                  ? <AdminTasks />
+                  : <MemberMyTasks />
+              }
+            </Layout>
+          }
+        />
 
-      {
-        localStorage.getItem("role") === "ADMIN"
-          ? <AdminTasks />
-          : <MemberMyTasks />
-      }
+        {/* Manage Members */}
+        <Route
+          path="/manage-members"
+          element={
+            <Layout>
+              {
+                role === "ADMIN"
+                  ? <ManageMembers />
+                  : <Navigate to="/dashboard" replace />
+              }
+            </Layout>
+          }
+        />
 
-    </Layout>
-  }
-/>
-<Route
-  path="/manage-members"
-  element={
-    <Layout>
-      {role === "ADMIN" ? <ManageMembers /> : <Navigate to="/dashboard" replace />}
-    </Layout>
-  }
-/>
-<Route
-  path="/team"
-  element={
-    <Layout>
-      {role === "ADMIN" ? <TeamDashboard /> : <Navigate to="/dashboard" replace />}
-    </Layout>
-  }
-/>
+        {/* Team Dashboard */}
+        <Route
+          path="/team"
+          element={
+            <Layout>
+              {
+                role === "ADMIN"
+                  ? <TeamDashboard />
+                  : <Navigate to="/dashboard" replace />
+              }
+            </Layout>
+          }
+        />
 
       </Routes>
 
     </BrowserRouter>
+
   );
 };
 
