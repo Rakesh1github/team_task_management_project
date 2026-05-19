@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   Link,
@@ -22,6 +22,17 @@ const Sidebar = () => {
   const [open, setOpen]
     = useState(false);
 
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+
+  useEffect(() => {
+    if (theme === "light") {
+      document.body.classList.add("light-theme");
+    } else {
+      document.body.classList.remove("light-theme");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   /* LOGOUT POPUP */
 
   const [showLogoutPopup,
@@ -34,7 +45,7 @@ const Sidebar = () => {
 
     localStorage.clear();
 
-    window.location.href = "/";
+    window.location.href = import.meta.env.BASE_URL;
   };
 
   return (
@@ -218,11 +229,31 @@ const Sidebar = () => {
 
       </div>
 
-      {/* HEADER */}
-
       <div className="top-header">
 
-        <div></div>
+        <div className="theme-toggle-container" style={{ marginLeft: "20px" }}>
+          <button
+            className="theme-toggle-btn"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            style={{
+              background: "var(--bg-nebula)",
+              border: "1px solid var(--border-nebula)",
+              borderRadius: "20px",
+              padding: "8px 16px",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "var(--text-stars)",
+              transition: "all 0.3s ease",
+              boxShadow: "var(--shadow-neon)"
+            }}
+          >
+            {theme === "dark" ? "☀️ Day Mode" : "🌙 Night Mode"}
+          </button>
+        </div>
 
         {/* PROFILE */}
 

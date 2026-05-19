@@ -10,6 +10,7 @@ const TeamDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [roleFilter, setRoleFilter] = useState("ALL");
   const [statusFilter, setStatusFilter] = useState("ALL");
+  const [assignmentFilter, setAssignmentFilter] = useState("ALL");
 
   // Panel State
   const [selectedUser, setSelectedUser] = useState(null);
@@ -119,7 +120,8 @@ const TeamDashboard = () => {
     const matchesSearch = safeName.toLowerCase().includes(searchQuery.toLowerCase()) || safeEmail.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesRole = roleFilter === "ALL" || u.role === roleFilter;
     const matchesStatus = statusFilter === "ALL" || (statusFilter === "PRESENT" && u.todayStatus === "PRESENT") || (statusFilter === "ABSENT" && u.todayStatus === "ABSENT") || (statusFilter === "UNMARKED" && !u.todayStatus);
-    return matchesSearch && matchesRole && matchesStatus;
+    const matchesAssignment = assignmentFilter === "ALL" || (assignmentFilter === "ACTIVE" && u.assignedProjects && u.assignedProjects.length > 0);
+    return matchesSearch && matchesRole && matchesStatus && matchesAssignment;
   });
 
   return (
@@ -131,19 +133,31 @@ const TeamDashboard = () => {
       </div>
 
       <div className="analytics-cards">
-        <div className="stat-card">
+        <div 
+          className={`stat-card ${statusFilter === "ALL" && assignmentFilter === "ALL" ? "active-filter" : ""}`}
+          onClick={() => { setStatusFilter("ALL"); setAssignmentFilter("ALL"); }}
+        >
           <span className="stat-title">Total Employees</span>
           <span className="stat-value">{totalEmployees}</span>
         </div>
-        <div className="stat-card present">
+        <div 
+          className={`stat-card present ${statusFilter === "PRESENT" ? "active-filter" : ""}`}
+          onClick={() => { setStatusFilter("PRESENT"); setAssignmentFilter("ALL"); }}
+        >
           <span className="stat-title">Present Today</span>
           <span className="stat-value">{presentToday}</span>
         </div>
-        <div className="stat-card absent">
+        <div 
+          className={`stat-card absent ${statusFilter === "ABSENT" ? "active-filter" : ""}`}
+          onClick={() => { setStatusFilter("ABSENT"); setAssignmentFilter("ALL"); }}
+        >
           <span className="stat-title">Absent Today</span>
           <span className="stat-value">{absentToday}</span>
         </div>
-        <div className="stat-card projects">
+        <div 
+          className={`stat-card projects ${assignmentFilter === "ACTIVE" ? "active-filter" : ""}`}
+          onClick={() => { setStatusFilter("ALL"); setAssignmentFilter("ACTIVE"); }}
+        >
           <span className="stat-title">Active Assignments</span>
           <span className="stat-value">{totalAssignments}</span>
         </div>

@@ -50,4 +50,10 @@ public class TaskController {
 		return taskService.getProjects();
 	}
 
+	@org.springframework.web.bind.annotation.DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteTask(@PathVariable("id") Long id) {
+
+		return taskService.deleteTask(id);
+	}
+
 }

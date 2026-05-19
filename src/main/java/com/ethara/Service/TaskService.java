@@ -116,4 +116,9 @@ public class TaskService {
 		return ResponseEntity.ok(projects);
 	}
 
+	public ResponseEntity<?> deleteTask(Long id) {
+		taskRepository.deleteById(id);
+		return ResponseEntity.ok("Task Deleted Successfully");
+	}
+
 }

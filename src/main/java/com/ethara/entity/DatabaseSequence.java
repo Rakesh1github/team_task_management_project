@@ -4,15 +4,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
-@Document(collection = "project_members")
+@Document(collection = "database_sequences")
 @Data
-public class ProjectMember {
+public class DatabaseSequence {
     @Id
-    private Long id;
-
-    
-    private int userId;
-
-   
-    private int projectId;
+    private String id;
+    private long seq;
 }

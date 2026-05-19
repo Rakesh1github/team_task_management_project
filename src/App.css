@@ -1,9 +1,678 @@
+/* Master "Moon Purple" Global Cosmic Theme */
+:root {
+  /* Premium Dark Moon Purple Color Palette */
+  --bg-space: #060410;               /* Deepest starry space black-purple */
+  --bg-cosmos: #0c0822;              /* Space deep purple card body */
+  --bg-nebula: #130d35;              /* Glowing translucent layer */
+  --bg-nebula-hover: #1e1454;        /* Interactive layer hover state */
+  --border-nebula: rgba(167, 139, 250, 0.18); /* Translucent cosmic violet border */
+  --border-nebula-focus: rgba(167, 139, 250, 0.45); /* Glowing border focus */
+  
+  --text-stars: #ffffff;             /* Brilliant starlight white */
+  --text-lavender: #c4b5fd;          /* Dreamy lavender secondary text */
+  --text-nebula: #a78bfa;            /* Vibrant purple highlight */
+  --text-muted: #7c729e;             /* Soft purple-grey */
+  
+  --btn-purple-glow: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+  --btn-purple-hover: linear-gradient(135deg, #8b5cf6 0%, #5b21b6 100%);
+  --shadow-purple: 0 10px 40px -10px rgba(124, 58, 237, 0.45);
+  --shadow-neon: 0 0 25px rgba(139, 92, 246, 0.25);
+}
+
+/* Light Theme variables override */
+.light-theme {
+  --bg-space: #f8fafc;               /* Soft slate background */
+  --bg-cosmos: #ffffff;              /* Clean white cards */
+  --bg-nebula: #f1f5f9;              /* Lighter gray layer */
+  --bg-nebula-hover: #e2e8f0;        /* Hover layer */
+  --border-nebula: rgba(15, 23, 42, 0.09) !important; /* Soft border */
+  --border-nebula-focus: rgba(109, 40, 217, 0.3) !important;
+  
+  --text-stars: #0f172a !important;  /* Deep dark charcoal for titles */
+  --text-lavender: #334155 !important; /* Elegant gray-blue for body text */
+  --text-nebula: #6d28d9 !important; /* Bright royal purple accent */
+  --text-muted: #64748b !important;  /* Muted grey */
+  
+  --btn-purple-glow: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%) !important;
+  --btn-purple-hover: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+  --shadow-purple: 0 10px 30px -10px rgba(109, 40, 217, 0.12) !important;
+  --shadow-neon: 0 0 15px rgba(109, 40, 217, 0.08) !important;
+}
+
+.light-theme .sidebar {
+  background: linear-gradient(to bottom, #ffffff, #f8fafc) !important;
+  border-right: 1px solid rgba(15, 23, 42, 0.09) !important;
+}
+
+.light-theme .logo-section h2 {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+.light-theme .profile-info h4 {
+  color: #0f172a !important;
+}
+
+.light-theme .profile-info p {
+  color: #64748b !important;
+}
+
+.light-theme .top-header {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.09) !important;
+}
+
+.light-theme .top-box,
+.light-theme .members-table-box,
+.light-theme .task-table-box,
+.light-theme .member-task-table {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.09) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+}
+
+.light-theme .active {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+  color: white !important;
+}
+
+.light-theme .menu a:hover {
+  background: #f1f5f9 !important;
+  color: #6d28d9 !important;
+}
+
+.light-theme .profile-section {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.09) !important;
+}
+
+/* Global Reset & Body */
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-space) !important;
+  color: var(--text-stars) !important;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Scrollbar styling for maximum immersion */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-space);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-nebula);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-nebula-hover);
+}
+
+/* ======================================================== */
+/* LAYOUTS & CONTAINERS                                     */
+/* ======================================================== */
+
+/* Main layout content wrapper */
+.main-content {
+  background: var(--bg-space) !important;
+  color: var(--text-stars) !important;
+}
+
+/* All dashboards/trackers */
+.dashboard-container,
+.team-dashboard,
+.attendance-tracker,
+.admin-projects,
+.admin-tasks,
+.my-tasks-container,
+.project-member-container,
+.manage-members-container,
+.team-management-container {
+  background-color: var(--bg-space) !important;
+  color: var(--text-stars) !important;
+  min-height: calc(100vh - 80px) !important;
+}
+
+/* Top bar Navigation Header */
+.top-header {
+  background: rgba(6, 4, 16, 0.75) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid var(--border-nebula) !important;
+  color: var(--text-stars) !important;
+}
+
+.profile-section {
+  background: var(--bg-cosmos) !important;
+  border: 1px solid var(--border-nebula) !important;
+}
+
+.profile-info h4 {
+  color: var(--text-stars) !important;
+}
+
+.profile-info p {
+  color: var(--text-lavender) !important;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  background: linear-gradient(to bottom, #060410, #0c0822) !important;
+  border-right: 1px solid var(--border-nebula) !important;
+}
+
+.sidebar h2 {
+  color: var(--text-stars) !important;
+  background: linear-gradient(to right, #ffffff, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.menu a {
+  color: var(--text-lavender) !important;
+}
+
+.menu a:hover {
+  background: var(--bg-nebula) !important;
+  color: var(--text-stars) !important;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15);
+}
+
+.menu .active {
+  background: var(--btn-purple-glow) !important;
+  color: var(--text-stars) !important;
+  box-shadow: var(--shadow-purple) !important;
+}
+
+/* ======================================================== */
+/* PREMIUM MOON PURPLE CARDS (GLASSMORPHISM)                 */
+/* ======================================================== */
+.stat-card,
+.employee-card,
+.project-card,
+.task-card,
+.member-card,
+.activity-card,
+.actions-bar,
+.popup-box,
+.glass-modal,
+.side-panel,
+.panel-header,
+.auth-card,
+.auth-forms-container,
+.attendance-card,
+.info-card,
+.table-container,
+.top-box,
+.members-table-box,
+.task-table-box,
+.member-task-table {
+  background: var(--bg-cosmos) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--border-nebula) !important;
+  border-radius: 16px !important;
+  color: var(--text-stars) !important;
+  box-shadow: var(--shadow-purple) !important;
+}
+
+.stat-card:hover,
+.employee-card:hover,
+.project-card:hover,
+.task-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--text-nebula) !important;
+  box-shadow: var(--shadow-neon) !important;
+}
+
+/* Left borders inside stats cards */
+.stat-card {
+  border-left: 4px solid var(--text-nebula) !important;
+}
+
+.stat-card.present { border-left-color: #10b981 !important; }
+.stat-card.absent { border-left-color: #ef4444 !important; }
+.stat-card.projects { border-left-color: #8b5cf6 !important; }
+
+.stat-card.active-filter {
+  border: 2px solid var(--text-nebula) !important;
+  border-left-width: 6px !important;
+  background-color: var(--bg-nebula) !important;
+}
+
+/* ======================================================== */
+/* TYPOGRAPHY                                               */
+/* ======================================================== */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.stat-value,
+.user-details h3,
+.panel-header h3,
+.panel-section h4,
+.auth-title,
+.dashboard-header h2,
+.project-name,
+.task-title {
+  color: var(--text-stars) !important;
+}
+
+p, span, label,
+.stat-title,
+.projects-label,
+.auth-subtitle,
+.remember-me,
+.auth-switch,
+.dashboard-header p,
+.user-details p,
+.activity-details p,
+.task-desc {
+  color: var(--text-lavender) !important;
+}
+
+/* ======================================================== */
+/* FORMS, INPUTS & CONTROLS                                 */
+/* ======================================================== */
+input,
+select,
+textarea,
+.search-input,
+.filter-select,
+.input-group input,
+.input-group select {
+  background-color: var(--bg-space) !important;
+  border: 1.5px solid var(--border-nebula) !important;
+  color: var(--text-stars) !important;
+  border-radius: 10px !important;
+  transition: all 0.3s ease !important;
+  font-size: 16px !important; /* Larger font size */
+  padding: 10px 14px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.search-input:focus,
+.filter-select:focus,
+.input-group input:focus,
+.input-group select:focus {
+  outline: none !important;
+  border-color: var(--text-nebula) !important;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25) !important;
+  background-color: var(--bg-nebula) !important;
+}
+
+label {
+  font-size: 15px !important; /* Larger label font size */
+  color: var(--text-lavender) !important;
+}
+
+th, td {
+  font-size: 15px !important; /* Larger table cell font size */
+}
+
+/* Placeholder color */
+::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.8;
+}
+
+/* ======================================================== */
+/* BUTTONS & ACCENTS                                        */
+/* ======================================================== */
+.auth-btn,
+.add-btn,
+.save-btn,
+.confirm-btn,
+.btn-primary,
+.submit-btn {
+  background: var(--btn-purple-glow) !important;
+  color: white !important;
+  box-shadow: var(--shadow-purple) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.auth-btn:hover,
+.add-btn:hover,
+.save-btn:hover,
+.confirm-btn:hover,
+.btn-primary:hover,
+.submit-btn:hover {
+  background: var(--btn-purple-hover) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-neon), var(--shadow-purple) !important;
+}
+
+.cancel-btn,
+.btn-secondary {
+  background: var(--bg-nebula) !important;
+  border: 1px solid var(--border-nebula) !important;
+  color: var(--text-stars) !important;
+}
+
+.cancel-btn:hover,
+.btn-secondary:hover {
+  background: var(--bg-nebula-hover) !important;
+}
+
+.danger-btn {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+
+.danger-btn:hover {
+  background: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* ======================================================== */
+/* LISTS, BADGES, AND EXTRA STYLING                         */
+/* ======================================================== */
+.avatar {
+  background: var(--bg-space) !important;
+  color: var(--text-nebula) !important;
+  border: 1.5px solid var(--border-nebula) !important;
+}
+
+.status-badge.present {
+  background: rgba(16, 185, 129, 0.15) !important;
+  color: #34d399 !important;
+}
+
+.status-badge.absent {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #f87171 !important;
+}
+
+.project-tag,
+.task-badge {
+  background: var(--bg-space) !important;
+  color: var(--text-lavender) !important;
+  border: 1px solid var(--border-nebula) !important;
+}
+
+/* Role selectors in Signup/Login */
+.role-toggle {
+  background: var(--bg-space) !important;
+  border: 1.5px solid var(--border-nebula) !important;
+}
+
+.role-btn {
+  color: var(--text-lavender) !important;
+}
+
+.role-btn.active {
+  background: var(--btn-purple-glow) !important;
+  color: white !important;
+  box-shadow: var(--shadow-purple) !important;
+}
+
+.role-btn:hover {
+  color: var(--text-stars) !important;
+}
+
+/* Slide Panels and popup overlays */
+.side-panel-overlay,
+.modal-overlay,
+.popup-overlay {
+  background: rgba(6, 4, 16, 0.6) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.close-btn {
+  color: var(--text-lavender) !important;
+}
+.close-btn:hover {
+  color: var(--text-stars) !important;
+}
+
+/* List Items / Activity Log / Tables */
+.activity-dot {
+  background: var(--text-nebula) !important;
+  box-shadow: 0 0 10px var(--text-nebula) !important;
+}
+
+.activity-details span {
+  color: var(--text-muted) !important;
+}
+
+.panel-section h4 {
+  border-bottom-color: var(--border-nebula) !important;
+}
+
+/* Table styling fixes */
+th {
+  background-color: var(--bg-space) !important;
+  color: var(--text-stars) !important;
+  border-bottom: 2px solid var(--border-nebula) !important;
+}
+
+td {
+  border-bottom: 1px solid var(--border-nebula) !important;
+  color: var(--text-lavender) !important;
+}
+
+tr:hover td {
+  background-color: var(--bg-nebula) !important;
+}
+
+/* Auth Container Accents */
+.auth-container {
+  background: linear-gradient(135deg, #060410 0%, #0d0b26 50%, #1e1345 100%) !important;
+}
+
+.auth-card {
+  background: var(--bg-cosmos) !important;
+  border: 1px solid var(--border-nebula) !important;
+}
+
+.auth-illustration {
+  background: linear-gradient(135deg, #1e0b3c 0%, #0a0419 100%) !important;
+}
+
+.auth-illustration::after {
+  background: radial-gradient(circle at center, transparent 0%, rgba(6, 4, 16, 0.75) 100%) !important;
+}
+
+.illustration-content {
+  background: rgba(21, 16, 43, 0.5) !important;
+  border-color: rgba(167, 139, 250, 0.2) !important;
+}
+
+.shape-1 { background: #6d28d9 !important; }
+.shape-2 { background: #311068 !important; }
+.shape-3 { background: #9d174d !important; }
+
+/* Dynamic MNC Hero Banner in Dashboard */
+.dashboard-hero {
+  background: linear-gradient(135deg, #130a2a 0%, #2e0e56 100%) !important;
+  box-shadow: var(--shadow-purple) !important;
+  border: 1px solid rgba(167, 139, 250, 0.25) !important;
+}
+
+/* Premium Glassmorphic Alert Box overrides */
+.success-msg {
+  color: #34d399 !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  padding: 12px !important;
+  border-radius: 10px !important;
+  margin-bottom: 15px !important;
+}
+
+.error-msg {
+  color: #f87171 !important;
+  background: rgba(239, 68, 68, 0.12) !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  padding: 12px !important;
+  border-radius: 10px !important;
+  margin-bottom: 15px !important;
+}
+
+/* ======================================================== */
+/* GLOBAL PREMIUM TYPOGRAPHY INCREASES                     */
+/* ======================================================== */
+
+body {
+  font-size: 16px !important;
+}
+
+input, select, textarea, button {
+  font-size: 16px !important;
+}
+
+label {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+th {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+}
+
+td {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+h1 {
+  font-size: 40px !important;
+}
+
+h2 {
+  font-size: 34px !important;
+}
+
+h3, .section-title {
+  font-size: 26px !important;
+}
+
+/* Sidebar Specific overrides */
+.sidebar .menu a {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  padding: 12px 18px !important;
+  color: var(--text-lavender) !important;
+  transition: all 0.25s ease !important;
+}
+
+/* Hover dynamic state - thoda orr dark/rich background */
+.sidebar .menu a:hover {
+  background: var(--bg-nebula-hover) !important;
+  color: var(--text-stars) !important;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5) !important; /* Deeper inner shadow for rich hover */
+}
+
+/* Light Theme Sidebar Menu Hover - much darker/crisper contrast */
+.light-theme .menu a:hover {
+  background: #cbd5e1 !important; /* Darker slate gray background */
+  color: #0f172a !important;      /* Dark slate text */
+}
+
+.sidebar .menu-category {
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.2px !important;
+  color: var(--text-muted) !important;
+}
+
+/* Logo Section & Text Visibility overrides (Solves "Team Task Management texture low") */
+.logo-section h2 {
+  color: var(--text-stars) !important;
+  font-weight: 800 !important;
+  font-size: 20px !important;
+  letter-spacing: 0.5px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.logo-icon {
+  background: var(--btn-purple-glow) !important;
+  color: white !important;
+  box-shadow: var(--shadow-neon) !important;
+}
+
+/* Metric values */
+.stat-card h2 {
+  font-size: 46px !important;
+  font-weight: 800 !important;
+}
+
+.stat-card p {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
+
+/* Card hover - thoda orr dark transition */
+.clickable-card:hover {
+  background: var(--bg-nebula-hover) !important;
+  border-color: var(--border-nebula-focus) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4) !important;
+}
+
+.light-theme .clickable-card:hover {
+  background: #f1f5f9 !important; /* Darker background in light theme */
+  border-color: #cbd5e1 !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* ======================================================== */
+/* OUTSTANDINGLY ATTRACTIVE GLOWING LOGOUT BUTTON         */
+/* ======================================================== */
+
+.logout-btn {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.08) !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  color: #f87171 !important; /* Brighter texture red for extreme visibility in dark mode */
+  padding: 13px 18px !important;
+  border-radius: 12px !important;
+  cursor: pointer;
+  text-align: center !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%) !important;
+  color: white !important;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.45) !important;
+  transform: translateY(-2px) !important;
+  border-color: transparent !important;
+}
+
+/* Light Theme Logout Button Override (Solves low texture in light mode) */
+.light-theme .logout-btn {
+  background: rgba(220, 38, 38, 0.06) !important;
+  border: 1px solid rgba(220, 38, 38, 0.25) !important;
+  color: #b91c1c !important; /* Solid thick red for perfect light-mode readability */
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.05) !important;
+}
+
+.light-theme .logout-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%) !important;
+  color: white !important;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.3) !important;
+  border-color: transparent !important;
 }

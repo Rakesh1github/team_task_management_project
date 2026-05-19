@@ -37,17 +37,40 @@
   flex-direction: column;
   gap: 8px;
   border-left: 4px solid #2563eb;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.stat-card.active-filter {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  border: 2px solid #2563eb;
+  border-left-width: 6px;
+  background-color: #f8fafc;
 }
 
 .stat-card.present { border-left-color: #10b981; }
+.stat-card.present.active-filter {
+  border-color: #10b981;
+  background-color: #f0fdf4;
+}
+
 .stat-card.absent { border-left-color: #ef4444; }
+.stat-card.absent.active-filter {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
 .stat-card.projects { border-left-color: #8b5cf6; }
+.stat-card.projects.active-filter {
+  border-color: #8b5cf6;
+  background-color: #faf5ff;
+}
 
 .stat-title {
   color: #64748b;

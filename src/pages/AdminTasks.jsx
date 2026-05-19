@@ -41,6 +41,30 @@ const AdminTasks = () => {
     = useState("");
 
   const [error, setError] = useState("");
+  const [deletedDefaultTaskIds, setDeletedDefaultTaskIds] = useState([]);
+
+  const handleDeleteTask = async (id) => {
+    if (id.toString().startsWith("def-task-")) {
+      setDeletedDefaultTaskIds((prev) => [...prev, id]);
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    try {
+      const response = await fetch(`${BASE_URL}/tasks/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        fetchTasks();
+      }
+    } catch (err) {
+      console.error("Error deleting task:", err);
+    }
+  };
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -214,7 +238,7 @@ const AdminTasks = () => {
     };
 
   // Filter logic
-  let displayTasks = tasks;
+  let displayTasks = tasks.filter(t => !deletedDefaultTaskIds.includes(t.id));
   const today = new Date().toISOString().split("T")[0];
 
   if (projectFilter) {
@@ -279,6 +303,7 @@ const AdminTasks = () => {
               <th>Due Date</th>
               <th>Priority</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
 
           </thead>
@@ -315,6 +340,25 @@ const AdminTasks = () => {
                     {task.status}
                   </span>
 
+                </td>
+
+                <td>
+                  <button
+                    className="remove-btn"
+                    onClick={() => handleDeleteTask(task.id)}
+                    style={{
+                      background: "#dc2626",
+                      color: "white",
+                      border: "none",
+                      padding: "8px 14px",
+                      borderRadius: "8px",
+                      cursor: "pointer",
+                      fontWeight: "600",
+                      transition: "0.3s"
+                    }}
+                  >
+                    Remove
+                  </button>
                 </td>
 
               </tr>

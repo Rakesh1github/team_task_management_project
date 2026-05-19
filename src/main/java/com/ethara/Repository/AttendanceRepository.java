@@ -4,18 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.ethara.entity.Attendance;
 
-import jakarta.transaction.Transactional;
-
 @Repository
-public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
+public interface AttendanceRepository extends MongoRepository<Attendance, Long> {
 
     Optional<Attendance> findByUserIdAndDate(int userId, LocalDate date);
     
@@ -23,8 +18,5 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     
     List<Attendance> findByUserIdAndDateBetween(int userId, LocalDate start, LocalDate end);
 
-    @Modifying
-    @Transactional
-    @Query("DELETE FROM Attendance a WHERE a.userId = :userId")
-    void deleteByUserId(@Param("userId") int userId);
+    void deleteByUserId(int userId);
 }

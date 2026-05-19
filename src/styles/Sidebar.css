@@ -60,8 +60,14 @@
 }
 
 .logo-section h2 {
-  color: white;
+  color: var(--text-stars) !important;
   font-size: 18px;
+  font-weight: 800;
+}
+
+.light-theme .logo-section h2 {
+  color: #1e1b4b !important;
+  text-shadow: none !important;
 }
 
 /* MENU */

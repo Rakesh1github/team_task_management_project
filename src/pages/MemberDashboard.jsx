@@ -18,37 +18,35 @@ const MemberDashboard = () => {
 
   const fetchDashboard = async () => {
     setLoading(true);
+    let fetchedTasks = [];
     try {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userId");
       
-      let fetchedTasks = [];
       const response = await fetch(`${BASE_URL}/member-features/tasks/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if(response.ok){
         fetchedTasks = await response.json();
       }
-      
-      const allTasks = [...DEFAULT_TASKS, ...fetchedTasks];
-      const today = new Date().toISOString().split("T")[0];
-
-      const computedData = {
-        totalProjects: 12, // Default modules + any others
-        totalTasks: allTasks.length,
-        completedTasks: allTasks.filter(t => t.status === "Done").length,
-        inProgressTasks: allTasks.filter(t => t.status === "In Progress").length,
-        todoTasks: allTasks.filter(t => t.status === "To Do").length,
-        overdueTasks: allTasks.filter(t => t.status !== "Done" && t.dueDate < today).length
-      };
-
-      setData(computedData);
-      
     } catch(err){
-      console.error(err);
-    } finally {
-      setLoading(false);
+      console.error("Member dashboard fetch error, using defaults:", err);
     }
+
+    const allTasks = [...DEFAULT_TASKS, ...fetchedTasks];
+    const today = new Date().toISOString().split("T")[0];
+
+    const computedData = {
+      totalProjects: 12, // Default modules + any others
+      totalTasks: allTasks.length,
+      completedTasks: allTasks.filter(t => t.status === "Done").length,
+      inProgressTasks: allTasks.filter(t => t.status === "In Progress").length,
+      todoTasks: allTasks.filter(t => t.status === "To Do").length,
+      overdueTasks: allTasks.filter(t => t.status !== "Done" && t.dueDate < today).length
+    };
+
+    setData(computedData);
+    setLoading(false);
   };
 
   useEffect(() => {

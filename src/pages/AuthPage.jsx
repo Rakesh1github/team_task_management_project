@@ -57,7 +57,7 @@ const AuthPage = ({ initialView = "login" }) => {
       localStorage.setItem("name", data.name);
       localStorage.setItem("email", data.email);
 
-      window.location.href = "/dashboard";
+      window.location.href = `${import.meta.env.BASE_URL}dashboard`;
     } catch (err) {
       console.error("Login failed:", err);
       setErrorMsg("Network Error. Please try again.");

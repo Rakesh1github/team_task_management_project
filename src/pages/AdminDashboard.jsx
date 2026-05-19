@@ -18,10 +18,10 @@ const AdminDashboard = () => {
 
   const fetchDashboardData = async () => {
     setLoading(true);
+    let fetchedTasks = [];
     try {
       const token = localStorage.getItem("token");
       
-      let fetchedTasks = [];
       const response = await fetch(`${BASE_URL}/tasks`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -29,31 +29,29 @@ const AdminDashboard = () => {
       if (response.ok) {
         fetchedTasks = await response.json();
       }
-
-      const allTasks = [...DEFAULT_TASKS, ...fetchedTasks];
-      const today = new Date().toISOString().split("T")[0];
-
-      const totalProjects = 12; // 12 default modules
-      const totalTasks = allTasks.length;
-      const completedTasks = allTasks.filter(t => t.status === "Done").length;
-      const inProgressTasks = allTasks.filter(t => t.status === "In Progress").length;
-      const todoTasks = allTasks.filter(t => t.status === "To Do").length;
-      const overdueTasks = allTasks.filter(t => t.status !== "Done" && t.dueDate < today).length;
-
-      setStats([
-        { title: "Total Projects", value: totalProjects, icon: "📁", color: "blue", route: "/projects" },
-        { title: "Total Tasks", value: totalTasks, icon: "✅", color: "purple", route: "/tasks" },
-        { title: "Completed Tasks", value: completedTasks, icon: "✔️", color: "green", route: "/tasks?status=Done" },
-        { title: "In Progress", value: inProgressTasks, icon: "⏳", color: "yellow", route: "/tasks?status=In Progress" },
-        { title: "To Do", value: todoTasks, icon: "📝", color: "gray", route: "/tasks?status=To Do" },
-        { title: "Overdue Tasks", value: overdueTasks, icon: "⚠️", color: "red", route: "/tasks?status=Overdue" }
-      ]);
-      
     } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
+      console.error("Dashboard fetch error, using defaults:", err);
     }
+
+    const allTasks = [...DEFAULT_TASKS, ...fetchedTasks];
+    const today = new Date().toISOString().split("T")[0];
+
+    const totalProjects = 12; // 12 default modules
+    const totalTasks = allTasks.length;
+    const completedTasks = allTasks.filter(t => t.status === "Done").length;
+    const inProgressTasks = allTasks.filter(t => t.status === "In Progress").length;
+    const todoTasks = allTasks.filter(t => t.status === "To Do").length;
+    const overdueTasks = allTasks.filter(t => t.status !== "Done" && t.dueDate < today).length;
+
+    setStats([
+      { title: "Total Projects", value: totalProjects, icon: "📁", color: "blue", route: "/projects" },
+      { title: "Total Tasks", value: totalTasks, icon: "✅", color: "purple", route: "/tasks" },
+      { title: "Completed Tasks", value: completedTasks, icon: "✔️", color: "green", route: "/tasks?status=Done" },
+      { title: "In Progress", value: inProgressTasks, icon: "⏳", color: "yellow", route: "/tasks?status=In Progress" },
+      { title: "To Do", value: todoTasks, icon: "📝", color: "gray", route: "/tasks?status=To Do" },
+      { title: "Overdue Tasks", value: overdueTasks, icon: "⚠️", color: "red", route: "/tasks?status=Overdue" }
+    ]);
+    setLoading(false);
   };
 
   useEffect(() => {

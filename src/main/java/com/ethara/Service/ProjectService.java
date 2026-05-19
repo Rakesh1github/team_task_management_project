@@ -6,8 +6,6 @@ import com.ethara.entity.Project;
 import com.ethara.entity.ProjectMember;
 import com.ethara.entity.Task;
 
-import jakarta.transaction.Transactional;
-
 import com.ethara.Repository.ProjectMemberRepository;
 import com.ethara.Repository.ProjectRepository;
 import com.ethara.Repository.TaskRepository;
