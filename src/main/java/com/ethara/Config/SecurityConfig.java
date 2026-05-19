@@ -44,7 +44,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
 
                 
-                .requestMatchers("/auth/**","/dashboard").permitAll()
+                .requestMatchers("/", "/auth/**", "/dashboard").permitAll()
 
                 
                 .requestMatchers("/admin/**","/tasks/**","/members").authenticated()
