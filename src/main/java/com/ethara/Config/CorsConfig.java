@@ -17,10 +17,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
 
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                                "https://team-task-management-project-topaz.vercel.app",
-                                "http://localhost:5173"
-                        )
+                        .allowedOrigins("*")
                         .allowedMethods("*")
                         .allowedHeaders("*")
                         .allowCredentials(true);
